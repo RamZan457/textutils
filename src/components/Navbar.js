@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 export default function Navbar(props) {
   return (
     <nav
-      className={`navbar navbar-expand-lg border-bottom border-body bg-${props.mode}`}
+      className={`navbar sticky-top navbar-expand-lg border-bottom border-body bg-${props.mode}`}
       data-bs-theme={`${props.mode}`}
     >
       <div className="container-fluid">
@@ -26,7 +26,7 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="content">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active " aria-current="page" to="/">
+              <Link className="nav-link   " aria-current="page" to="/">
                 Home
               </Link>
             </li>

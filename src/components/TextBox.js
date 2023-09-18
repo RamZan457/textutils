@@ -23,9 +23,13 @@ export default function TextBox(props) {
   };
 
   function handleCopy() {
+    //We can do it by simpliy with Line 29&33
     let text = document.getElementById("mybox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    setTimeout(() => {
+      document.getSelection().removeAllRanges();
+    }, 400);
     props.showAlert("Copied to Clipboard", "success");
   }
 
@@ -58,19 +62,39 @@ export default function TextBox(props) {
           placeholder="Enter text here"
         ></textarea>
       </div>
-      <button className="btn btn-primary" onClick={handleUpCase}>
+      <button
+        disabled={text.length === 0}
+        className="btn btn-primary"
+        onClick={handleUpCase}
+      >
         Convert into UpperCase
       </button>
-      <button className="btn btn-primary m-2" onClick={handleLowerCase}>
+      <button
+        disabled={text.length === 0}
+        className="btn btn-primary m-2"
+        onClick={handleLowerCase}
+      >
         Convert into LowerCase
       </button>
-      <button className="btn btn-primary m-2" onClick={handleClearCase}>
+      <button
+        disabled={text.length === 0}
+        className="btn btn-primary m-2"
+        onClick={handleClearCase}
+      >
         Clear text
       </button>
-      <button className="btn btn-primary m-2" onClick={handleCopy}>
+      <button
+        disabled={text.length === 0}
+        className="btn btn-primary m-2"
+        onClick={handleCopy}
+      >
         Copy text
       </button>
-      <button className="btn btn-primary m-2" onClick={handleExSpaces}>
+      <button
+        disabled={text.length === 0}
+        className="btn btn-primary m-2"
+        onClick={handleExSpaces}
+      >
         Remove Extra Spaces
       </button>
 
@@ -82,9 +106,7 @@ export default function TextBox(props) {
         </p>
         <p>{0.008 * text.split(/\s+/).filter(Boolean).length} Minutes read</p>
         <h2>Preview</h2>
-        <p>
-          {text.length > 0 ? text : "Enter some text in textbox to preview"}
-        </p>
+        <p>{text.length > 0 ? text : "Nothing to preview!"}</p>
       </div>
     </div>
   );
